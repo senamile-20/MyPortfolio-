@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Senamile's Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom header styles with profile picture on the left */
+        .custom-header {
+            background: linear-gradient(135deg, #3A2F60 0%, #5A4F80 50%, #7A6FA0 100%);
+            color: white;
+            padding: 2.5rem 0 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .profile-image-container {
+            flex-shrink: 0;
+        }
+
+        .profile-image {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .profile-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .custom-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-header .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .header-divider {
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, #FFD700, #FF6B6B);
+            border-radius: 2px;
+            margin: 1rem 0;
+        }
+
+        /* Navigation styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-nav {
+            margin: 0 auto;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            padding: 0.7rem 1.2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 6px;
+            margin: 0 0.2rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+
+        /* Floating animation for profile picture */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Beautiful purple theme with left alignment */
+        body {
+            background: linear-gradient(135deg, #3A2F60 0%, #5A4F80 50%, #7A6FA0 100%);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .section {
+            padding: 4rem 0;
+            min-height: auto;
+        }
+        
+        .content-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            margin: 0.3rem;
+            display: inline-block;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #FFD700, #FF6B6B);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .project-card h4 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hobby-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .hobby-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+        }
+        
+        .hobby-card h5 {
+            color: #FFD700;
+            margin-bottom: 0.8rem;
+        }
+        
+        .achievement-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .achievement-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .achievement-list li:before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .education-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-form .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .contact-form .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #FFD700;
+            box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+            color: white;
+        }
+        
+        .btn-primary-custom {
+            background: linear-gradient(135deg, #FFD700, #FF6B6B);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            color: #3A2F60;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            color: #3A2F60;
+        }
+        
+        .section-title {
+            color: #FFD700;
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.8rem;
+            text-align: left;
+            font-size: 2.2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #FF6B6B);
+            border-radius: 2px;
+        }
+        
+        .profile-highlight {
+            background: linear-gradient(135deg, #FFD700, #FF6B6B);
+            color: #3A2F60;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+        
+        .skill-category h4 {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-content {
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Enhanced Contact Styles with Icons */
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFD700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .contact-item strong {
+            color: #FFD700;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-link {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(255, 215, 0, 0.5);
+            transition: all 0.3s ease;
+            padding: 0.1rem 0;
+        }
+
+        .contact-link:hover {
+            color: #FFD700;
+            border-bottom: 1px solid #FFD700;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+        
+        .github-link {
+            color: #FFD700;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .github-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #FFD700;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .profile-text {
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 140px;
+                height: 140px;
+            }
+
+            .custom-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .custom-header .tagline {
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .content-card, .project-card {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-content {
+                gap: 1rem;
+            }
+
+            .profile-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .custom-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .custom-header .tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stylish Header Section with Profile Picture on the Left -->
+    <div class="custom-header">
+        <div class="header-content">
+          
+            <div class="profile-image-container">
+                <img src="images/profile.jpg.JPG" alt="Senamile Dumakude" class="profile-image floating" 
+                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDIwMCAyMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjNUE0RjgwIi8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9IjgwIiByPSI0MCIgZmlsbD0iI0ZGRkZGRiIvPjxwYXRoIGQ9Ik0xMDAgMTQwQzEyMCAxNDAgMTQwIDE2MCAxNDAgMTgwSDEwMEg2MEM2MCAxNjAgODAgMTQwIDEwMCAxNDBaIiBmaWxsPSIjRkZGRkZGIi8+Cjwvc3ZnPgo='"/>
+            </div>
+            
+            <!-- Profile Text on the RIGHT -->
+            <div class="profile-text">
+                <h1 class="fw-bold">Senamile Dumakude</h1>
+                <p class="fs-5 tagline">Final Year Computer Science and Information Technology Student | Aspiring Software Engineer</p>
+                
+                <!-- Line Divider -->
+                <div class="header-divider"></div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="navbar navbar-expand-md navbar-toggleable-sm">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container body-content">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title glow-text">About Me</h2>
+                <div class="content-card floating-element">
+                    <span class="profile-highlight">Hey, I'm just a girl in love with algorithms</span>
+                    <div class="text-content">
+                        <p>I'm a passionate Computer Science student currently completing my degree at UKZN. I love solving problems, building meaningful (and sometimes just fun) projects, and constantly learning new skills. With experience in both low-level systems and high-level design, I've worked on system design and analysis, including building an automated system for an organization.</p>
+                        <p>My journey in technology started in 2023 when I was first introduced to coding, and since then, I've been fascinated by how technology can solve real-world problems. I'm particularly interested in artificial intelligence and how it can be applied to improve everyday life.</p>
+                        <p>You can find all my links below!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title glow-text">My Toolbox</h2>
+                <div class="content-card">
+                    <div class="skill-category">
+                        <h4>Programming Languages</h4>
+                        <div>
+                            <span class="skill-badge">Java</span>
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">C++</span>
+                            <span class="skill-badge">SQL</span>
+                            <span class="skill-badge">Qt</span>
+                            <span class="skill-badge">C#</span>
+                            <span class="skill-badge">HTML</span>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h4>Soft Skills</h4>
+                        <div>
+                            <span class="skill-badge">Problem Solving</span>
+                            <span class="skill-badge">Team Collaboration</span>
+                            <span class="skill-badge">Project Management</span>
+                            <span class="skill-badge">Communication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title glow-text">Projects</h2>
+                
+              <div class="project-card">
+                <h4>Ambulance Request Automated System</h4>
+                <div class="text-content">
+                    <p>An automated web-based ambulance request system that allows patients to request emergency assistance online, automatically prioritizes the emergency (green, orange, or red), and assigns the correct ambulance type (BLS, ILS, or ALS) based on severity.</p>
+                    <p>The system prevents requests when no ambulances are available and supports three user roles: patients, paramedics, and managers. Patients can make requests and update payments, paramedics can update service details and treatment provided, and managers can monitor all daily operations, including completed and pending emergencies, paramedic assignments, ambulance availability, and payment records.</p>
+            
+                    <!-- Clickable GitHub Link -->
+                    <div class="project-link">
+                        <a href="https://github.com/senamile-20/Ambulance-Request-Automated-System" target="_blank" class="github-link">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <span class="skill-badge">C#</span>
+                    <span class="skill-badge">HTML</span>
+                    <span class="skill-badge">JavaScript</span>
+					<span class="skill-badge">SQL</span>
+                </div>
+                </div>
+                <div class="project-card">
+                    <h4>Back to Earth Quiz</h4>
+                    <div class="text-content">
+                        <p>Built and programmed an interactive quiz using C++ and Qt. The quiz follows the story of an astronaut who is lost in space and must answer questions correctly to get back to Earth before time runs out (#Energy).</p>
+                        <p>The quiz allows users to create a username the first time they play. The game has three levels, ranging from easy to hard, and the player must pass all levels to reach Earth.</p>
+                        <p>At the end, players can view the leaderboard to see their ranking compared to all other players who have played the game.</p>
+                    </div>
+                    <div class="mt-3">
+                        <span class="skill-badge">C++</span>
+                        <span class="skill-badge">Qt</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="section">
+            <div class="container">
+                <h2 class="section-title glow-text">Achievements</h2>
+                <div class="content-card">
+                    <ul class="achievement-list">
+                        <li>Laboratory demonstrator for a System Analysis and Design second year course</li>
+                        <li>Team Lead for my final year team project</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section id="hobbies" class="section">
+            <div class="container">
+                <h2 class="section-title glow-text">Hobbies</h2>
+                <div class="content-card">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="hobby-card">
+                                <h5>Creative Coding</h5>
+                                <p>I enjoy creating visual art and interactive experiences using code.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="hobby-card">
+                                <h5>Running</h5>
+                                 <p>I enjoy running because it helps me clear my mind. I also want to start training for marathons.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="section-title glow-text">Education</h2>
+                <div class="education-card">
+                    <h4>University of KwaZulu-Natal (UKZN)</h4>
+                    <div class="text-content">
+                        <p><strong>Bachelor of Science in Computer Science and Information Technology</strong> (Expected Graduation: May 2026)</p>
+                        <p>Relevant Coursework: Data Structures & Algorithms, Artificial Intelligence, Database Systems and Networking</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+       <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title glow-text">Contact</h2>
+            <div class="content-card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Get In Touch</h4>
+                        <p>I'm always interested in new opportunities and collaborations. Feel free to reach out!</p>
+                        
+                        <ul class="list-unstyled contact-list">
+                            <li class="mb-3">
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope contact-icon"></i>
+                                    <div>
+                                        <strong>Email</strong><br>
+                                        <a href="mailto:sdumakude.ys@gmail.com" class="contact-link">sdumakude.ys@gmail.com</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="contact-item">
+                                    <i class="fab fa-linkedin contact-icon"></i>
+                                    <div>
+                                        <strong>LinkedIn</strong><br>
+                                        <a href="https://www.linkedin.com/in/senamile-dumakude-b98b62267/" target="_blank" class="contact-link">
+                                            Connect with me
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="mb-3">
+                                <div class="contact-item">
+                                    <i class="fab fa-github contact-icon"></i>
+                                    <div>
+                                        <strong>GitHub</strong><br>
+                                        <a href="https://github.com/senamile-20" target="_blank" class="contact-link">
+                                            View my projects
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                                    <div>
+                                        <strong>Location</strong><br>
+                                        <span>Richards Bay, South Africa</span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+        <footer class="text-center" style="background: #3A2F60; color: white; padding: 2rem 0; margin-top: 3rem;">
+            <p>&copy; <span id="currentYear"></span> - Senamile Dumakude Portfolio</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Smooth scrolling functionality
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add active class to current navigation link
+        window.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Fallback for profile image - create a placeholder if image doesn't load
+        document.addEventListener('DOMContentLoaded', function () {
+            const profileImg = document.querySelector('.profile-image');
+            profileImg.addEventListener('error', function () {
+                console.log('Profile image not found, using placeholder');
+            });
+        });
+    </script>
+</body>
+</html>
