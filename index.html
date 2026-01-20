@@ -200,46 +200,9 @@
             font-weight: 700;
         }
         
-        .hobby-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            border-radius: 12px;
-            padding: 1.5rem;
-            height: 100%;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+       
         
-        .hobby-card:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-        }
-        
-        .hobby-card h5 {
-            color: #FFD700;
-            margin-bottom: 0.8rem;
-        }
-        
-        .achievement-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .achievement-list li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            padding-left: 2rem;
-        }
-        
-        .achievement-list li:before {
-            content: '★';
-            position: absolute;
-            left: 0;
-            color: #FFD700;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
+       
         
         .education-card {
             background: rgba(255, 255, 255, 0.1);
@@ -499,8 +462,7 @@
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
                         <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#achievements">Achievements</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+                       
                         <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
@@ -563,81 +525,71 @@
         </div>
     </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="section">
-            <div class="container">
-                <h2 class="section-title glow-text">Projects</h2>
+        
+       <section id="projects" class="section">
+    <div class="container">
+        <h2 class="section-title glow-text">Projects</h2>
+        
+        <div class="project-card">
+            <h4>Ambulance Request Automated System</h4>
+            <div class="text-content">
+                <p>An automated web-based ambulance request system that allows patients to request emergency assistance online, automatically prioritizes the emergency (green, orange, or red), and assigns the correct ambulance type (BLS, ILS, or ALS) based on severity.</p>
+                <p>The system prevents requests when no ambulances are available and supports three user roles: patients, paramedics, and managers. Patients can make requests and update payments, paramedics can update service details and treatment provided, and managers can monitor all daily operations, including completed and pending emergencies, paramedic assignments, ambulance availability, and payment records.</p>
+        
+                <!-- Clickable GitHub Link -->
+                <div class="project-link">
+                    <a href="https://github.com/senamile-20/Ambulance-Request-Automated-System" target="_blank" class="github-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="mt-3">
+                <span class="skill-badge">C#</span>
+                <span class="skill-badge">HTML/CSS</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">SQL</span>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <h4>Back to Earth Quiz</h4>
+            <div class="text-content">
+                <p>Built and programmed an interactive quiz using C++ and Qt. The quiz follows the story of an astronaut who is lost in space and must answer questions correctly to get back to Earth before time runs out (#Energy).</p>
+                <p>The quiz allows users to create a username the first time they play. The game has three levels, ranging from easy to hard, and the player must pass all levels to reach Earth.</p>
+                <p>At the end, players can view the leaderboard to see their ranking compared to all other players who have played the game.</p>
+            </div>
+            <div class="mt-3">
+                <span class="skill-badge">C++</span>
+                <span class="skill-badge">Qt</span>
+            </div>
+        </div>
+        
+       
+        <div class="project-card">
+            <h4>To Do List</h4>
+            <div class="text-content">
+                <p>A web-based task management application built using ASP.NET and C#. The application allows users to register with their username and manage tasks efficiently through an intuitive interface.</p>
+                <p>Users can add new tasks, delete existing tasks, and mark tasks as completed. The system provides a clean and organized way to track daily activities and responsibilities, helping users stay productive and organized.</p>
+                <p>The application features user authentication and persistent data storage, ensuring that each user's tasks are saved and accessible across sessions.</p>
                 
-              <div class="project-card">
-                <h4>Ambulance Request Automated System</h4>
-                <div class="text-content">
-                    <p>An automated web-based ambulance request system that allows patients to request emergency assistance online, automatically prioritizes the emergency (green, orange, or red), and assigns the correct ambulance type (BLS, ILS, or ALS) based on severity.</p>
-                    <p>The system prevents requests when no ambulances are available and supports three user roles: patients, paramedics, and managers. Patients can make requests and update payments, paramedics can update service details and treatment provided, and managers can monitor all daily operations, including completed and pending emergencies, paramedic assignments, ambulance availability, and payment records.</p>
-            
-                    <!-- Clickable GitHub Link -->
-                    <div class="project-link">
-                        <a href="https://github.com/senamile-20/Ambulance-Request-Automated-System" target="_blank" class="github-link">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <span class="skill-badge">C#</span>
-                    <span class="skill-badge">HTML/CSS</span>
-                    <span class="skill-badge">JavaScript</span>
-					<span class="skill-badge">SQL</span>
-                </div>
-                </div>
-                <div class="project-card">
-                    <h4>Back to Earth Quiz</h4>
-                    <div class="text-content">
-                        <p>Built and programmed an interactive quiz using C++ and Qt. The quiz follows the story of an astronaut who is lost in space and must answer questions correctly to get back to Earth before time runs out (#Energy).</p>
-                        <p>The quiz allows users to create a username the first time they play. The game has three levels, ranging from easy to hard, and the player must pass all levels to reach Earth.</p>
-                        <p>At the end, players can view the leaderboard to see their ranking compared to all other players who have played the game.</p>
-                    </div>
-                    <div class="mt-3">
-                        <span class="skill-badge">C++</span>
-                        <span class="skill-badge">Qt</span>
-                    </div>
+                
+                <div class="project-link">
+                    <a href="https://github.com/senamile-20/ToDoList" target="_blank" class="github-link">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
                 </div>
             </div>
-        </section>
-
-        <!-- Achievements Section -->
-        <section id="achievements" class="section">
-            <div class="container">
-                <h2 class="section-title glow-text">Achievements</h2>
-                <div class="content-card">
-                    <ul class="achievement-list">
-                        <li>Laboratory demonstrator for a System Analysis and Design second year course</li>
-                        <li>Team Lead for my final year team project</li>
-                    </ul>
-                </div>
+            <div class="mt-3">
+                <span class="skill-badge">ASP.NET</span>
+                <span class="skill-badge">C#</span>
+                <span class="skill-badge">HTML/CSS</span>
+                <span class="skill-badge">JavaScript</span>
             </div>
-        </section>
-
-        <!-- Hobbies Section -->
-        <section id="hobbies" class="section">
-            <div class="container">
-                <h2 class="section-title glow-text">Hobbies</h2>
-                <div class="content-card">
-                    <div class="row">
-                        <div class="col-md-6 mb-4">
-                            <div class="hobby-card">
-                                <h5>Creative Coding</h5>
-                                <p>I enjoy creating visual art and interactive experiences using code.</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                            <div class="hobby-card">
-                                <h5>Running</h5>
-                                 <p>I enjoy running because it helps me clear my mind. I also want to start training for marathons.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </div>
+</section>
+        
+       
 
         <!-- Education Section -->
         <section id="education" class="section">
@@ -772,6 +724,7 @@
 </body>
 
 </html>
+
 
 
 
